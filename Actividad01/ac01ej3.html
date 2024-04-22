@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Números Primos</title>
+</head>
+<body>
+    <h2>Generando Números Primos</h2>
+    <label for="cantidad">Ingrese la cantidad de números primos que desea generar:</label>
+    <br>
+    <input type="number" id="cantidad" min="1">
+    <style>
+        button.custom-button {
+            background-color: #3498DB ;
+            color: white;
+        }
+    </style>
+    <button onclick="generarPrimos()" class="custom-button">Generar</button>
+    
+    <div id="resultado"></div>
+    <br>
+    <br>
+    <script src="js/ac01ej3.js">
+        // Array de números primos menores que 110
+        let PrimosMenores110 = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107];
+        
+        // Función para generar los primeros "cantidad" números primos menores que 110
+        function generarNumerosPrimos(cantidad) {
+            // Utiliza el método slice para obtener los "cantidad" primeros elementos del array PrimosMenores110
+            return PrimosMenores110.slice(0, cantidad);
+        }
+    
+        // Función para generar los números primos y mostrarlos en la página
+        function generarPrimos() {
+            // Obtener la cantidad ingresada por el usuario desde el input con id "cantidad"
+            let cantidad = document.getElementById("cantidad").value;
+            // Obtener el elemento div donde se mostrarán los resultados
+            let resultado = document.getElementById("resultado");
+            // Limpiar resultados anteriores
+            resultado.innerHTML = "";
+    
+            // Verificar si la cantidad ingresada es válida
+            if (cantidad <= 0 || isNaN(cantidad)) {
+                // Mostrar un mensaje de error si la cantidad no es válida
+                resultado.textContent = "Por favor, ingrese un número válido mayor que cero";
+                return; // Salir de la función si la cantidad no es válida
+            }
+            
+            // Generar los primeros "cantidad" números primos y almacenarlos en la variable primos
+            let primos = generarNumerosPrimos(parseInt(cantidad));
+            // Mostrar los números primos generados en la página, separados por comas
+            resultado.textContent = "Números primos generados: " + primos.join(", ");
+        }
+    </script>
+    
+</body>
+</html>
